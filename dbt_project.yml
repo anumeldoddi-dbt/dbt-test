@@ -3,4 +3,14 @@ version: '1.0.0'
 
 config-version: 2
 
+models: 
+    dbt_learning:
+       staging:
+          jaffle_shop:
+              +materialized: view
+          stripe:
+              +materialized: view
+       marts:
+              +materialized: table
+
     
