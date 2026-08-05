@@ -1,12 +1,9 @@
 with orders as  (
-    select  id as order_id,
-        user_id as customer_id,
-        order_date,
-        status from {{ ref ('stg_jaffle_shop__orders' )}}
+    select  * from {{ ref ('stg_jaffle_shop__orders' )}}
 ),
 
 payments as (
-    select * from {{ ref ('stg_stripe__payments') }}
+    select * from {{ ref ('stg_stripe__payment') }}
 ),
 
 order_payments as (
