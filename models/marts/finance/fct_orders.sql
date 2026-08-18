@@ -1,3 +1,15 @@
+{{
+    config(
+        materialized='incremental',
+        incremental_strategy='microbatch',
+        event_time='order_date',
+        begin='2018-01-01',
+        batch_size='day',
+        lookback=2,
+        full_refresh=false
+    )
+}}
+
 with orders as  (
     select  * from {{ ref ('stg_jaffle_shop__orders' )}}
 ),
@@ -28,3 +40,8 @@ order_payments as (
 )
 
 select * from final
+{% if is_incremental() %}
+    -- this filter will only be applied on an incremental run
+    where order_date > (select max(order_date) from {{ this }}) 
+{% endif %}
+ order by order_date desc
