@@ -1,7 +1,7 @@
 with
     customers as (select * from {{ ref("stg_jaffle_shop__customers") }}),
     orders as (select * from {{ ref("fct_orders") }}),
-
+employees as (select * from {{ ref('employees') }}),
     customer_orders as (
 
         select
@@ -27,11 +27,12 @@ with
             customer_orders.first_order_date,
             customer_orders.most_recent_order_date,
             coalesce(customer_orders.number_of_orders, 0) as number_of_orders,
-            customer_orders.lifetime_value
+            customer_orders.lifetime_value,
+            e.employee_id
         from customers
 
         left join customer_orders using (customer_id)
-
+        left join employees e on (e.customer_id=customer_orders.customer_id)
     )
 
 select *
