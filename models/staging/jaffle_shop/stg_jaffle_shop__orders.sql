@@ -1,7 +1,9 @@
-    select
-        id as order_id,
-        user_id as customer_id,
-        order_date,
-        status
-
-    from raw.jaffle_shop.orders
+select
+    id as order_id,
+    customer as customer_id,
+    ordered_at as order_date,
+    store_id,
+    subtotal,
+    tax_paid,
+    order_total
+from raw.jaffle_shop.orders
