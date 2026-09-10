@@ -1,6 +1,6 @@
 snapshots:
   - name: orders_snapshot
-    relation: source('jaffle_shop','orders')
+    relation: source('jaffle_shop','orders_old')
     config:  
      database : analytics
      unique_key: id

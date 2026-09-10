@@ -10,7 +10,7 @@ models:
               +materialized: view
           stripe:
               +materialized: view
-       marts:
+          marts:
               +materialized: table
 
     

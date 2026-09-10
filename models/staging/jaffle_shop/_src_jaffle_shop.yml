@@ -3,8 +3,8 @@ sources:
     database: raw
     schema: jaffle_shop
     tables:
-      - name: customers
-      - name: orders 
+      - name: customers_old
+      - name: orders_old
        
     
 
